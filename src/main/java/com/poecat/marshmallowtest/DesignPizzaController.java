@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
 import java.util.List;
+import com.poecat.marshmallowtest.Ingredient.Type;
 
 @Slf4j
 @Controller
@@ -29,7 +30,17 @@ public class DesignPizzaController {
                 new Ingredient("GAR", "garlic sauce", Ingredient.Type.SAUCE)
         );
 
+        Type[] types = Ingredient.Type.values();
+        for(Type type : types) {                                //filter ingredients by type
+            model.addAttribute(type.toString().toLowerCase(),
+            filterByType(ingredients, type));
+        }
+        model.addAttribute("design", new Pizza());
 
+        return "design";
+    }
 
+    private Object filterByType(List<Ingredient> ingredients, Type type) {
+        return 0;
     }
 }
