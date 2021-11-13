@@ -15,22 +15,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)
+@WebMvcTest(HomeController.class) //test for HomeController class
 public class HomeControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mockMvc; //MockMvc injection
 
     @Test
     public void should_show_home_page() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/"))   //doing request HTTP GET to /
 
-                .andExpect(status().isOk())
+                .andExpect(status().isOk())  //HTTP 200 status expected
 
-                .andExpect(view().name("home"))
+                .andExpect(view().name("home")) //home name expected
 
                 .andExpect(content().string(
-                        containsString("Hi there! Life's difficult, isn't it..?")));
+                        containsString("Hi there! Life's difficult, isn't it..?"))); //String expected
     }
 
 }
