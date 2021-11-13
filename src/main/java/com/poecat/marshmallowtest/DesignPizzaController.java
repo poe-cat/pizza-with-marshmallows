@@ -3,7 +3,9 @@ package com.poecat.marshmallowtest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.poecat.marshmallowtest.Ingredient.Type;
+
+import javax.validation.Valid;
 
 @Slf4j
 @Controller
@@ -43,6 +47,20 @@ public class DesignPizzaController {
         return "design";
     }
 
+    @PostMapping
+    public String processDesign(
+            @Valid Pizza pizza, Errors errors,
+            @ModelAttribute Order order) {
+
+        if (errors.hasErrors()) {
+            return "design";
+        }
+
+        //TODO: save pizza data
+
+        return "redirect:/orders/current";
+    }
+
     private List<Ingredient> filterByType(
             List<Ingredient> ingredients, Type type) {
         return ingredients
@@ -50,12 +68,4 @@ public class DesignPizzaController {
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
     }
-
-//    @PostMapping
-//    public String processDesign(Design design) {
-//        //TODO
-//        log.info("Processing....: " + design);
-//
-//        return "redirect:/orders/current";
-//    }
 }
