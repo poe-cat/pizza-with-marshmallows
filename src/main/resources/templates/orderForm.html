@@ -16,7 +16,7 @@
         <h3>Your pizza:</h3>
         <a th:href="@{/design}" id="another">Create next pizza</a><br/>
         <ul>
-            <li th:each="taco : ${order.tacos}"><span th:text="${taco.name}">pizza's name</span></li>
+            <li th:each="pizza : ${order.pizza}"><span th:text="${pizza.name}">pizza's name</span></li>
         </ul>
 
         <div th:if="${#fields.hasErrors()}">
