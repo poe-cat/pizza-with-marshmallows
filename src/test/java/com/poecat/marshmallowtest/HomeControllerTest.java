@@ -1,6 +1,5 @@
 package com.poecat.marshmallowtest;
 
-import com.poecat.marshmallowtest.web.HomeController;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.containsString;
@@ -16,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class) //test for HomeController class
+@WebMvcTest
 public class HomeControllerTest {
 
     @Autowired
