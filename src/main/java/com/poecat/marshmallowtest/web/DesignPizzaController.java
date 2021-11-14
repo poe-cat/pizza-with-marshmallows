@@ -1,5 +1,8 @@
-package com.poecat.marshmallowtest;
+package com.poecat.marshmallowtest.web;
 
+import com.poecat.marshmallowtest.Ingredient;
+import com.poecat.marshmallowtest.Order;
+import com.poecat.marshmallowtest.Pizza;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

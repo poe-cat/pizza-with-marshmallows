@@ -1,5 +1,6 @@
 package com.poecat.marshmallowtest;
 
+import com.poecat.marshmallowtest.web.HomeController;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.containsString;
