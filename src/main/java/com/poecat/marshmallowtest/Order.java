@@ -42,10 +42,10 @@ public class Order {
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV code")
     private String ccCVV;
 
-    private List<Pizza> pizza = new ArrayList<>();
+    private List<Pizza> pizzas = new ArrayList<>();
 
     public void addDesign(Pizza design) {
-        this.pizza.add(design);
+        this.pizzas.add(design);
     }
 
 }
