@@ -4,6 +4,7 @@ import com.poecat.marshmallowtest.Ingredient;
 import com.poecat.marshmallowtest.Order;
 import com.poecat.marshmallowtest.Pizza;
 import com.poecat.marshmallowtest.data.IngredientRepository;
+import com.poecat.marshmallowtest.data.PizzaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +28,23 @@ import javax.validation.Valid;
 public class DesignPizzaController {
 
     private final IngredientRepository ingredientRepo;
+    private PizzaRepository designRepo;
 
     @Autowired
-    public DesignPizzaController(IngredientRepository ingredientRepo) {
+    public DesignPizzaController(IngredientRepository ingredientRepo,
+                                 PizzaRepository designRepo) {
         this.ingredientRepo = ingredientRepo;
+        this.designRepo = designRepo;
+    }
+
+    @ModelAttribute(name = "orderForm")
+    public Order order() {
+        return new Order();
+    }
+
+    @ModelAttribute(name = "design")
+    public Pizza pizza() {
+        return new Pizza();
     }
 
     @GetMapping
@@ -51,14 +65,15 @@ public class DesignPizzaController {
 
     @PostMapping
     public String processDesign(
-            @Valid Pizza pizza, Errors errors,
+            @Valid Pizza design, Errors errors,
             @ModelAttribute Order order) {
 
         if (errors.hasErrors()) {
             return "design";
         }
 
-        //TODO: save pizza data
+        Pizza saved = designRepo.save(design);
+        order.addDesign(saved);
 
         return "redirect:/orders/current";
     }
