@@ -8,7 +8,7 @@
 
 <body>
 <h1>Make your own pizza!</h1>
-<img th:src="@{/images/bulb.jpg}"/>
+<img th:src="@{/images/cook.jpg}"/>
 
 
 <form th:method="POST" th:object="${design}">
@@ -62,12 +62,8 @@
     </div>
 
     <div>
-
-
         <h3>Name your pizza:</h3>
         <input type="text" th:field="*{name}"/>
-
-        <span th:text="${#fields.hasErrors('name')}">XXX</span>
         <span class="validationError"
               th:if="${#fields.hasErrors('name')}"
               th:errors="*{name}">Name error</span>
