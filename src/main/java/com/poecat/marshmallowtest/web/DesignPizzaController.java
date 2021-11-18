@@ -37,7 +37,7 @@ public class DesignPizzaController {
         this.designRepo = designRepo;
     }
 
-    @ModelAttribute(name = "orderForm")
+    @ModelAttribute(name = "order")
     public Order order() {
         return new Order();
     }
