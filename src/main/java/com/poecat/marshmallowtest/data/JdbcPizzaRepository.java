@@ -39,7 +39,7 @@ public class JdbcPizzaRepository implements PizzaRepository {
         pizza.setCreatedAt(new Date());
         PreparedStatementCreator psc =
                 new PreparedStatementCreatorFactory(
-                        "insert into Taco (name, createdAt) values (?, ?)",
+                        "insert into Pizza (name, createdAt) values (?, ?)",
                         Types.VARCHAR, Types.TIMESTAMP
                 ).newPreparedStatementCreator(
                         Arrays.asList(
@@ -55,7 +55,7 @@ public class JdbcPizzaRepository implements PizzaRepository {
     private void saveIngredientToPizza(
             Ingredient ingredient, long pizzaId) {
         jdbc.update(
-                "insert into Taco_Ingredients (taco, ingredient) " +
+                "insert into Pizza_Ingredients (pizza, ingredient) " +
                         "values (?, ?)",
                 pizzaId, ingredient.getId());
     }
