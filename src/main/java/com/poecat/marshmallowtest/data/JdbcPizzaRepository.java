@@ -37,11 +37,16 @@ public class JdbcPizzaRepository implements PizzaRepository {
 
     private long savePizzaInfo(Pizza pizza) {
         pizza.setCreatedAt(new Date());
-        PreparedStatementCreator psc =
+        PreparedStatementCreatorFactory preparedStatementCreatorFactory =
                 new PreparedStatementCreatorFactory(
-                        "insert into Pizza (name, createdAt) values (?, ?)",
-                        Types.VARCHAR, Types.TIMESTAMP
-                ).newPreparedStatementCreator(
+                "insert into PIZZA (name, createdAt) values (?, ?)",
+                Types.VARCHAR, Types.TIMESTAMP
+        );
+
+        preparedStatementCreatorFactory.setReturnGeneratedKeys(true);
+
+        PreparedStatementCreator psc =
+                preparedStatementCreatorFactory.newPreparedStatementCreator(
                         Arrays.asList(
                                 pizza.getName(),
                                 new Timestamp(pizza.getCreatedAt().getTime())));
