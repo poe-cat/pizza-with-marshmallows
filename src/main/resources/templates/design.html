@@ -11,18 +11,15 @@
 <img th:src="@{/images/bulb.jpg}"/>
 
 
-<form method="POST" th:object="${design}">
+<form th:method="POST" th:object="${design}">
 
 
-<!--    <span class="validationError"-->
-<!--          th:if="${#fields.hasErrors('ingredients')}"-->
-<!--          th:errors="*{ingredients}">Ingredient error</span>-->
-
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Błąd składnika</span>
 
     <div class="grid">
-
         <div class="ingredient-group" id="doughs">
-
             <h3>Choose dough style:</h3>
             <div th:each="ingredient : ${dough}">
                 <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
@@ -39,7 +36,7 @@
             </div>
         </div>
 
-        <div class="ingredient-group" id="cheese">
+        <div class="ingredient-group" id="cheeses">
             <h3>Choose cheese</h3>
             <div th:each="ingredient : ${cheese}">
                 <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
@@ -70,11 +67,10 @@
         <h3>Name your pizza:</h3>
         <input type="text" th:field="*{name}"/>
 
-<!--        <span th:text="${#fields.hasErrors('name')}">XXX</span>-->
-<!--        <span class="validationError"-->
-<!--              th:if="${#fields.hasErrors('name')}"-->
-<!--              th:errors="*{name}">Name error</span>-->
-
+        <span th:text="${#fields.hasErrors('name')}">XXX</span>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name error</span>
         <br/>
 
         <button>Order pizza</button>

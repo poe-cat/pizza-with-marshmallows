@@ -9,19 +9,19 @@
     <body>
 
     <form method="POST" th:action="@{/orders}" th:object="${order}">
-        <h1>Order your pizza!</h1>
+        <h1>Zamów!!</h1>
 
         <img th:src="@{/images/bulb.jpg}"/>
 
         <h3>Your pizza:</h3>
         <a th:href="@{/design}" id="another">Create next pizza</a><br/>
         <ul>
-            <li th:each="pizza : ${order.pizza}"><span th:text="${pizza.name}">pizza's name</span></li>
+            <li th:each="pizza : ${order.pizzas}"><span th:text="${pizza.name}">pizza's name</span></li>
         </ul>
 
         <div th:if="${#fields.hasErrors()}">
             <span class="validationError">
-
+                Remove problems and tryt again
             </span>
         </div>
 
@@ -83,7 +83,7 @@
             th:errors="*{ccCVV}">CVV error</span>
         <br/>
 
-        <input type="submit" value="Order"/>
+        <input type="submit" value="Submit"/>
     </form>
 
     </body>
